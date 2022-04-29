@@ -8,11 +8,11 @@
       <th>Nombre de classes</th>
     </tr>
     <tr>
-      <td>{{ statistiqueNbLivreDiff }}</td>
-      <td>{{ statistiqueSort }}</td>
-      <td>{{ statistiqueNbEcoleDiff }}</td>
-      <td>{{ statistiqueNbBranchesDiff }}</td>
-      <td>{{ statistiqueNbClassesDiff }}</td>
+      <td>{{statistiqueNbLivreDiff}}</td>
+      <td>{{ data.length }}</td>
+      <td>{{statistiqueNbEcoleDiff}}</td>
+      <td>{{statistiqueNbBranchesDiff}}</td>
+      <td>{{statistiqueNbClassesDiff}}</td>
     </tr>
   </table>
 </template>
@@ -21,88 +21,44 @@
 <script>
 export default {
   name: "spellStats",
-  props: ["tableauSpells"],
-  computed: {
-    statistiqueSort() {
-      console.log(this.tableauSpells);
-      if (this.tableauSpells.length != 0) {
-        let value = this.tableauSpells.filter((spell) =>
-          spell[1].startsWith(this.searchName)
-        );
-        return value.length;
-      } else return 0;
+  props: ["data"],
+  methods: {
+    getOccurenceElement(key) { 
+      let tousLesElements = this.data.map(table => table[key]); 
+      let tableauElementsUnique = [...new Set(tousLesElements)]; 
+      return tableauElementsUnique.length; 
     },
+  },
+  computed: {
     statistiqueNbLivreDiff() {
-      if (this.tableauSpells.length != 0) {
-        let value = this.tableauSpells.filter((spell) =>
-          spell[1].startsWith(this.searchName)
-        );
-        let count = 0;
-        let countArrayLivre = [];
-        for (const vFor of value) {
-          if (!countArrayLivre.includes(vFor[0])) {
-            count++;
-            countArrayLivre.push(vFor[0]);
-          }
-        }
-        return count;
-      } else return 0;
+      return this.getOccurenceElement(0);
     },
     statistiqueNbEcoleDiff() {
-      if (this.tableauSpells.length != 0) {
-        let value = this.tableauSpells.filter((spell) =>
-          spell[1].startsWith(this.searchName)
-        );
-        let count = 0;
-        let countArraySchool = [];
-        for (const vFor of value) {
-          if (!countArraySchool.includes(vFor[2])) {
-            count++;
-            countArraySchool.push(vFor[2]);
-          }
-        }
-        return count;
-      } else return 0;
+      return this.getOccurenceElement(2);
     },
     statistiqueNbBranchesDiff() {
-      if (this.tableauSpells) {
-        let value = this.tableauSpells.filter((spell) =>
-          spell[1].startsWith(this.searchName)
-        );
-        let count = 0;
-        let countArrayBranche = [];
-        for (const vFor of value) {
-          if (vFor[3].length != 0) {
-            for (const branche of vFor[3]) {
-              if (!countArrayBranche.includes(branche)) {
-                count++;
-                countArrayBranche.push(branche);
-              }
-            }
-          }
-        }
-        return count;
-      } else return 0;
+      let tousLesElements = this.data.map(table => table[3]);
+
+      let concat = [];
+      tousLesElements.forEach(elem => {
+        concat = concat.concat(elem);
+      })
+      return [...new Set(concat)].length;
     },
     statistiqueNbClassesDiff() {
-      if (this.tableauSpells) {
-        let value = this.tableauSpells.filter((spell) =>
-          spell[1].startsWith(this.searchName)
-        );
-        let count = 0;
-        let countArrayClasse = [];
-        for (const vFor of value) {
-          if (vFor[3].length != 0) {
-            for (const classe of vFor[4]) {
-              if (!countArrayClasse.includes(classe[0])) {
-                count++;
-                countArrayClasse.push(classe[0]);
-              }
+      let count = 0;
+      let countArrayClasse = [];
+      for (const vFor of this.data) {
+        if (vFor[3].length != 0) {
+          for (const classe of vFor[4]) {
+            if (!countArrayClasse.includes(classe[0])) {
+              count++;
+              countArrayClasse.push(classe[0]);
             }
           }
         }
-        return count;
-      } else return 0;
+      }
+      return count;
     },
   },
 };
