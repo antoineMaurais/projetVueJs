@@ -1,10 +1,11 @@
 <template>
-  <td v-on:click="afficherDetail(spell[0])">{{ spell[0] }}</td>
-  <td>{{ spell[1] }}</td>
-  <td>{{ spell[2] }}</td>
-  <td>{{ spell[3].join(", ") }}</td>
-  <!-- Supprime l'affiche des crochets -->
-  <td>{{ spell[4].join(", ") }}</td>
+
+  <td v-on:click="afficherDetail(spell[0])" class="whitespace-nowrap px-2 py-2 text-sm text-gray-900">{{ spell[0] }}</td>
+  <td class="whitespace-nowrap px-2 py-2 text-xs text-gray-900">{{ spell[1] }}</td>
+  <td class="whitespace-nowrap px-2 py-2 text-xs text-gray-900">{{ spell[2] }}</td>
+  <td class="whitespace-nowrap px-2 py-2 text-xs text-gray-900">{{ spell[3].join(", ") }}</td>
+  <td class="whitespace-nowrap px-2 py-2 text-xs text-gray-900">{{ spell[4].join(", ") }}</td>
+
   <!--
   <td>{{ spell[5] }}</td>
   <td>{{ spell[6] }}</td>

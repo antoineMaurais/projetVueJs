@@ -1,21 +1,34 @@
 <template>
-<table>
-    <tr>
-      <th>Livre</th>
-      <th>Nom</th>
-      <th>Ecole</th>
-      <th>Branche</th>
-      <th>Classe</th>
-    </tr>
-    <!-- On boucle des lignes de tableau
-          Chaque entité de spellSearch va être stocké dans spellFor
-          Puis on met une clé pour dire sur quoi on boucle, ici le nom, mais c'est inutile dans notre cas
-    -->
-    <tr v-for="spellFor in spellSearch" :key="spellFor[1]">
-      <!--On appel l'élément spell de spellView et on lui donne la valeur de spellFor pour qu'il travaille avec -->
-      <spellView :spell="spellFor" />
-    </tr>
-  </table>
+  <!-- This example requires Tailwind CSS v2.0+ -->
+  <div class="mt-8 flex flex-col m-6">
+    <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8 ">
+      <div class="inline-block w-full py-2 align-middle md:px-6 lg:px-8">
+        <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+          <table class="w-full divide-y divide-gray-300">
+            <thead class="bg-gray-50">
+              <tr>
+                <th scope="col" class="whitespace-nowrap py-3.5 pt-0 pl-4 pr-3 text-center text-sm font-semibold text-gray-900 sm:pl-6">Livre</th>
+                <th scope="col" class="whitespace-nowrap px-2 py-3.5 pt-0 text-center text-sm font-semibold text-gray-900">Nom</th>
+                <th scope="col" class="whitespace-nowrap px-2 py-3.5 pt-0 text-center text-sm font-semibold text-gray-900">Ecole</th>
+                <th scope="col" class="whitespace-nowrap px-2 py-3.5 pt-0 text-center text-sm font-semibold text-gray-900">Branche</th>
+                <th scope="col" class="whitespace-nowrap px-2 py-3.5 pt-0 text-center text-sm font-semibold text-gray-900">Classe</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200 bg-white">
+            <tr v-for="spellFor in data" :key="spellFor[1]">
+              <!--On appel l'élément spell de spellView et on lui donne la valeur de spellFor pour qu'il travaille avec -->
+              <spellView :spell="spellFor" />
+            </tr>
+
+
+              <!-- More transactions... -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
 </template>
 
@@ -25,9 +38,17 @@ import spellView from "./formSpellView.vue";
 
 export default {
   name: "spellTable",
-  props: ["spellSearch"],
+  props: ["data"],
   components: {
     spellView,
   },
+  statistiqueSort() {
+      if (this.searchNameBox) {
+        let value = this.data.filter((spell) =>
+          spell[1].startsWith(this.searchName)
+        );
+        return value.length;
+      } else return 0;
+    },
 };
 </script>
