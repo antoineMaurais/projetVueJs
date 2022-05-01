@@ -31,9 +31,9 @@
           >Rechercher un sort</label
         >
         <input
-          type="text"
-          v-model="searchName"
-          @input="$emit('spellSearch', this.searchName, this.searchNameBox)"
+          type="search"
+          v-model="search"
+          @input="$emit('updateSearch', this.search)"
           name="name"
           id="name"
           class="
@@ -51,27 +51,18 @@
       </div>
     </td>
 
-    <td>
-      Prendre en compte ?
-      <input
-        type="checkbox"
-        v-model="searchNameBox"
-        @input="$emit('spellSearch', this.searchName, this.searchNameBox)"
-      />
-    </td>
   </tr>
 </template>
 
-
 <script>
+
 export default {
-  name: "checkBoxSearchName",
+  name: "searchBar",
+  emits: ["updateSearch"],
   data: function () {
     return {
-      searchName: "",
-      searchNameBox: false,
+      search: ""
     };
   },
-  emits: ["searchName", "searchNameBox"],
 };
 </script>

@@ -157,7 +157,7 @@
       <spellStats :data="data" />
     </div>
     <div v-if="ongletCourant === 'recherche'">
-      <ongletRecherche :spellData="data" />
+      <ongletRecherche :data="data" />
     </div>
     <div v-if="ongletCourant === 'configuration'">
       <ongletConfiguration />
