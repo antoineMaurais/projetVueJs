@@ -1,13 +1,17 @@
 <template>
-  <h1>Bienvenue sur WikiSorts</h1>
-  <p>WikiSorts est la plus grande blibliothèque de livre de Sorts.</p>
-  <ul>
-    Les fonctionnalités disponibles :
-    <li>Les Statistiques</li>
-    <li>La Recherche</li>
-    <li>La Configuration</li>
-  </ul>
-  <h3>Nombre total de livre : {{ data.length }}</h3>
+  <div class="flex justify-center m-8">
+    <section class="font-semibold">
+      <h1>Bienvenue sur WikiSorts</h1>
+      <p>WikiSorts est la plus grande blibliothèque de livre de Sorts.</p>
+      <ul>
+        <strong>Fonctionnalités disponibles :</strong>
+        <li>Les Statistiques</li>
+        <li>La Recherche</li>
+        <li>La Configuration</li>
+      </ul>
+      <h3>Nombre total de livre : {{ data.length }}</h3>
+    </section>
+  </div>
   <table class="w-full divide-y divide-gray-300">
     <thead class="bg-gray-50">
       <tr>
@@ -106,3 +110,31 @@ export default {
   },
 };
 </script>
+
+<style>
+section {
+  text-align: center;
+}
+
+h1 {
+  font-size: 30px;
+}
+
+h3 {
+  text-decoration-line: underline;
+}
+
+strong {
+  font-size: 20px;
+}
+
+ul {
+  list-style-type: disc;
+  list-style-position: inside;
+  text-align: left;
+}
+
+li {
+  margin-left: 6px;
+}
+</style>
