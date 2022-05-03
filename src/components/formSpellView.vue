@@ -17,7 +17,6 @@
   <td class="whitespace-nowrap px-2 py-2 text-xs text-gray-900">
     {{ spell[4].join(", ") }}
   </td>
-  <div>TEst</div>
 </template>
 
 

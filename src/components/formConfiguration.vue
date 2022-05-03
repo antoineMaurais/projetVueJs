@@ -1,12 +1,16 @@
 <template>
-  <h1>Configuration :</h1>
-  <ul>
-    Modifier les options de recherche :
-    <li>Nom <input type="checkbox" /></li>
-    <li>Ecole <input type="checkbox" /></li>
-    <li>Classe <input type="checkbox" /></li>
-    <li>Branche <input type="checkbox" /></li>
-  </ul>
+  <div class="flex justify-center m-8">
+    <section class="font-semibold">
+      <h1>Configuration :</h1>
+      <ul>
+        Modifier les options de recherche :
+        <li>Nom <input type="checkbox" /></li>
+        <li>Ecole <input type="checkbox" /></li>
+        <li>Classe <input type="checkbox" /></li>
+        <li>Branche <input type="checkbox" /></li>
+      </ul>
+    </section>
+  </div>
 </template>
 
 

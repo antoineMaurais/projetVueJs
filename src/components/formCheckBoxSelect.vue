@@ -1,49 +1,57 @@
 <template>
   <tr>
     <td>
+<<<<<<< HEAD
         <SelectList
           label="Ecole :"
           :options="optionsEcole"
           name="ecole"
           @eventSelectOption="optionSelectFunction"
         />
+=======
+      <SelectList
+        label="Ecole :"
+        :options="optionsEcole"
+        name="ecole"
+        @eventSelectOption="optionSelectFunction"
+      />
+>>>>>>> f3351f08fbf1238af25ddf2596f2939913403512
     </td>
   </tr>
   <tr>
     <td>
+<<<<<<< HEAD
         <SelectList
           label="Branche :"
           options="test"
         />
+=======
+      <SelectList
+        label="Branche :"
+        :options="optionsBranche"
+        name="branche"
+        @eventSelectOption="optionSelectFunction"
+      />
+>>>>>>> f3351f08fbf1238af25ddf2596f2939913403512
     </td>
   </tr>
   <tr>
     <td>
-        <SelectList
-          label="Classes :"
-          options="test"
-        />
-    </td>
-    <td>
-      Prendre en compte ?
-      <input
-        type="checkbox"
-        v-model="searchClasseBox"
+      <SelectList
+        label="Classes :"
+        :options="optionsClasse"
+        name="classes"
+        @eventSelectOption="optionSelectFunction"
       />
     </td>
   </tr>
   <tr>
     <td>
-        <SelectList
-          label="Niveau :"
-          options="test"
-        />
-    </td>
-    <td>
-      Prendre en compte ?
-      <input
-        type="checkbox"
-        v-model="searchLevelBox"
+      <SelectList
+        label="Niveau :"
+        :options="optionsNiveau"
+        name="niveau"
+        @eventSelectOption="optionSelectFunction"
       />
     </td>
   </tr>
@@ -62,23 +70,61 @@ export default {
   data: function () {
     return {
       optionsEcole: this.getSchools(),
+      optionsBranche: this.getBranches(),
+      optionsClasse: this.getClasses(),
+      optionsNiveau: this.getLevels(),
     };
   },
   methods: {
-    getOccurenceElement(key) { 
-      let tousLesElements = data.map(table => table[key]); 
-      let tableauElementsUnique = [...new Set(tousLesElements)]; 
-      return tableauElementsUnique; 
+    getOccurenceElement(key) {
+      let tousLesElements = data.map((table) => table[key]);
+      let tableauElementsUnique = [...new Set(tousLesElements)];
+      return tableauElementsUnique;
     },
     getSchools() {
-      let tab = []
-      tab.push(" ")
+      let tab = [];
+      tab.push(" ");
 
-      tab = tab.concat(this.getOccurenceElement(2))
-      return tab
+      tab = tab.concat(this.getOccurenceElement(2));
+      return tab;
+    },
+    getBranches() {
+      let tousLesElements = data.map((table) => table[3]);
+
+      let tab = [];
+      tab.push(" ");
+      tousLesElements.forEach((elem) => {
+        tab = tab.concat(elem);
+      });
+      return [...new Set(tab)];
+    },
+    getClasses() {
+      let tousLesElements = data.map((table) => table[4]);
+
+      let tab = [];
+      tab.push(" ");
+      tousLesElements.forEach((elem) => {
+        elem.forEach((classe) => {
+          tab = tab.concat(classe[0]);
+        });
+      });
+      return [...new Set(tab)];
+    },
+    getLevels() {
+      let tousLesElements = data.map((table) => table[4]);
+
+      let tab = [];
+      tab.push(" ");
+      tousLesElements.forEach((elem) => {
+        elem.forEach((level) => {
+          tab = tab.concat(level[1]);
+        });
+      });
+      tab.sort();
+      return [...new Set(tab)];
     },
     optionSelectFunction(name, option) {
-      this.$emit('eventOptionSelected', {name, option})
+      this.$emit("eventOptionSelected", { name, option });
     },
     initSchools() {
       console.log("InitSchools");
