@@ -67,42 +67,40 @@ export default {
       switch (listeName.name) {
         case "ecole":
           this.ecoleListe = listeName;
-          this.spellData = this.spellData.filter(
-            (spell) => spell[2] === listeName.option
-          );
           break;
         case "branche":
           this.brancheListe = listeName;
-          this.spellData = this.spellData.filter((spell) =>
-            spell[3].includes(listeName.option)
-          );
           break;
         case "classes":
           this.classesListe = listeName;
-          this.spellData = this.spellData.filter((spell) =>
-            this.getClasses(spell[4]).includes(listeName.option)
-          );
           break;
         case "niveau":
-          this.niveauListe = listeName;
-          this.spellData = this.spellData.filter((spell) =>
-            this.getlevels(spell[4]).includes(parseInt(listeName.option))
-          );
+          this.niveauListe = listeName; 
           break;
       }
+
+      this.verifyIfOptionSelected();
     },
     verifyIfOptionSelected() {
       if (this.ecoleListe.option !== "") {
-        this.optionSelected(this.ecoleListe);
+        this.spellData = this.spellData.filter(
+            (spell) => spell[2] === this.ecoleListe.option
+          );
       }
       if (this.brancheListe.option !== "") {
-        this.optionSelected(this.brancheListe);
+        this.spellData = this.spellData.filter((spell) =>
+            spell[3].includes(this.brancheListe.option)
+          );
       }
       if (this.classesListe.option !== "") {
-        this.optionSelected(this.classesListe);
+        this.spellData = this.spellData.filter((spell) =>
+            this.getClasses(spell[4]).includes(this.classesListe.option)
+          );
       }
       if (this.niveauListe.option !== "") {
-        this.optionSelected(this.niveauListe);
+        this.spellData = this.spellData.filter((spell) =>
+            this.getlevels(spell[4]).includes(parseInt(this.niveauListe.option))
+          );
       }
     },
     getClasses(tab) {

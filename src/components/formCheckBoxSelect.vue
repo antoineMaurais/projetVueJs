@@ -1,38 +1,22 @@
 <template>
   <tr>
     <td>
-<<<<<<< HEAD
-        <SelectList
-          label="Ecole :"
-          :options="optionsEcole"
-          name="ecole"
-          @eventSelectOption="optionSelectFunction"
-        />
-=======
       <SelectList
         label="Ecole :"
         :options="optionsEcole"
         name="ecole"
         @eventSelectOption="optionSelectFunction"
       />
->>>>>>> f3351f08fbf1238af25ddf2596f2939913403512
     </td>
   </tr>
   <tr>
     <td>
-<<<<<<< HEAD
-        <SelectList
-          label="Branche :"
-          options="test"
-        />
-=======
       <SelectList
         label="Branche :"
         :options="optionsBranche"
         name="branche"
         @eventSelectOption="optionSelectFunction"
       />
->>>>>>> f3351f08fbf1238af25ddf2596f2939913403512
     </td>
   </tr>
   <tr>
