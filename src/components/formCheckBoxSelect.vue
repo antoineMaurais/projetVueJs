@@ -8,14 +8,6 @@
           @eventSelectOption="optionSelectFunction"
         />
     </td>
-    <td>
-      Prendre en compte ?
-      <input
-        type="checkbox"
-        v-model="searchSchoolBox"
-        
-      />
-    </td>
   </tr>
   <tr>
     <td>
@@ -23,13 +15,6 @@
           label="Branche :"
           options="test"
         />
-    </td>
-    <td>
-      Prendre en compte ?
-      <input
-        type="checkbox"
-        v-model="searchBrancheBox"
-      />
     </td>
   </tr>
   <tr>
