@@ -1,5 +1,9 @@
 <template>
   <!-- This example requires Tailwind CSS v2.0+ -->
+  <ModalDetail :open="open" :data="dataModal" @showModal="
+          (value) => {
+            this.open = value;
+          }"/>
   <div class="mt-8 flex flex-col m-6">
     <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
       <div class="inline-block w-full py-2 align-middle md:px-6 lg:px-8">
@@ -94,7 +98,7 @@
                 class="spellTab"
                 v-for="spellFor in spellAfficher"
                 :key="spellFor[1]"
-                v-on:click="afficherDetail()"
+                v-on:click="afficherDetail(spellFor)"
               >
                 <!--On appel l'élément spell de spellView et on lui donne la valeur de spellFor pour qu'il travaille avec -->
                 <spellView :spell="spellFor" />
@@ -110,6 +114,7 @@
 
 <script>
 import spellView from "./formSpellView.vue";
+import ModalDetail from "./formModalDetail.vue";
 //import spellDetail from "./formSpellDetail.vue";
 
 export default {
@@ -117,11 +122,23 @@ export default {
   props: ["spellAfficher"],
   components: {
     spellView,
+    ModalDetail
+  },
+  data () {
+    return {
+      open: false,
+      dataModal: []
+    }
   },
   methods: {
-    afficherDetail() {
-      alert();
+    afficherDetail(data) {
+      this.open = true;
+      this.dataModal = data;
+      console.log(data);
     },
+    setDataModal() {
+
+    }
   },
 };
 </script>

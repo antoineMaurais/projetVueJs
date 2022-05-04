@@ -6,8 +6,7 @@
           (search) => {
             this.recherche = search;
             spellSearch();
-          }
-        "
+          }"
       />
       <checkBoxSelect @eventOptionSelected="optionSelected($event)" />
       <h3>Nombre total de sorts trouvés: {{ spellData.length }}</h3>

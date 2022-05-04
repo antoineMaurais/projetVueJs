@@ -150,17 +150,18 @@
       </div>
     </div>
     <!--Permet d'afficher l'onglet souhaité -->
-    <div v-if="ongletCourant === 'accueil'">
-      <ongletAccueil :data="data" />
-    </div>
+    
     <div v-if="ongletCourant === 'stats'">
       <spellStats :data="data" />
     </div>
-    <div v-if="ongletCourant === 'recherche'">
+    <div v-else-if="ongletCourant === 'recherche'">
       <ongletRecherche :data="data" />
     </div>
-    <div v-if="ongletCourant === 'configuration'">
+    <div v-else-if="ongletCourant === 'configuration'">
       <ongletConfiguration />
+    </div>
+    <div v-else>
+      <ongletAccueil :data="data" />
     </div>
   </div>
 </template>
