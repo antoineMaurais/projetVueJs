@@ -1,8 +1,5 @@
 <template>
-  <td
-    v-on:click="afficherDetail(spell[0])"
-    class="whitespace-nowrap px-2 py-2 text-sm text-gray-900"
-  >
+  <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-900">
     {{ spell[0] }}
   </td>
   <td class="whitespace-nowrap px-2 py-2 text-xs text-gray-900">
@@ -24,10 +21,5 @@
 export default {
   name: "spellView",
   props: ["spell"],
-  methods: {
-    afficherDetail(spell) {
-      console.log(spell);
-    },
-  },
 };
 </script>

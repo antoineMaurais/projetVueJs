@@ -12,101 +12,23 @@
       <h3>Nombre total de livre : {{ data.length }}</h3>
     </section>
   </div>
-  <table class="w-full divide-y divide-gray-300">
-    <thead class="bg-gray-50">
-      <tr>
-        <th
-          scope="col"
-          class="
-            whitespace-nowrap
-            py-3.5
-            pt-0
-            pl-4
-            pr-3
-            text-center text-sm
-            font-semibold
-            text-gray-900
-            sm:pl-6
-          "
-        >
-          Livre
-        </th>
-        <th
-          scope="col"
-          class="
-            whitespace-nowrap
-            px-2
-            py-3.5
-            pt-0
-            text-center text-sm
-            font-semibold
-            text-gray-900
-          "
-        >
-          Nom
-        </th>
-        <th
-          scope="col"
-          class="
-            whitespace-nowrap
-            px-2
-            py-3.5
-            pt-0
-            text-center text-sm
-            font-semibold
-            text-gray-900
-          "
-        >
-          Ecole
-        </th>
-        <th
-          scope="col"
-          class="
-            whitespace-nowrap
-            px-2
-            py-3.5
-            pt-0
-            text-center text-sm
-            font-semibold
-            text-gray-900
-          "
-        >
-          Branche
-        </th>
-        <th
-          scope="col"
-          class="
-            whitespace-nowrap
-            px-2
-            py-3.5
-            pt-0
-            text-center text-sm
-            font-semibold
-            text-gray-900
-          "
-        >
-          Classe
-        </th>
-      </tr>
-    </thead>
-    <tbody class="divide-y divide-gray-200 bg-white">
-      <tr class="spellTab" v-for="spellFor in data" :key="spellFor[1]">
-        <!--On appel l'élément spell de spellView et on lui donne la valeur de spellFor pour qu'il travaille avec -->
-        <spellView :spell="spellFor" />
-      </tr>
-    </tbody>
-  </table>
+<formTable :spellAfficher="spellData" :key="spellData" />
 </template>
 
 
 <script>
-import spellView from "./formSpellView.vue";
+import formTable from "./formTable.vue";
 
 export default {
   name: "ongletAccueil",
   props: ["data"],
   components: {
-    spellView,
+    formTable,
+  },
+  data: function () {
+    return {
+      spellData: this.data
+    };
   },
 };
 </script>
