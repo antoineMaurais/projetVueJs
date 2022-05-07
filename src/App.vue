@@ -150,7 +150,7 @@
       </div>
     </div>
     <!--Permet d'afficher l'onglet souhaité -->
-    
+
     <div v-if="ongletCourant === 'stats'">
       <spellStats :data="data" />
     </div>
@@ -187,7 +187,7 @@ export default {
       ongletCourant: "accueil",
       activeClass: "bg-indigo-500",
       nonActiveClass: "bg-transparent",
-      config: this.initConfig()
+      config: this.initConfig(),
     };
   },
   methods: {
@@ -204,10 +204,11 @@ export default {
     ongletConfiguration() {
       this.ongletCourant = "configuration";
     },
+    //Initialisation de la config par défaut/au lancement de l'application
     initConfig() {
       let config = JSON.parse(localStorage.getItem("config"));
       if (!config) {
-        config = {ecole: true, branche: true, classes: true, niveau: true};
+        config = { ecole: true, branche: true, classes: true, niveau: true }; //toutes les options de recherches sont disponible
         localStorage.setItem("config", JSON.stringify(config));
       }
       return config;

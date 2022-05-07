@@ -1,9 +1,15 @@
 <template>
   <!-- This example requires Tailwind CSS v2.0+ -->
-  <ModalDetail :open="open" :data="dataModal" @showModal="
-          (value) => {
-            this.open = value;
-          }"/>
+  <!--Définition de la pop up de détail-->
+  <ModalDetail
+    :open="open"
+    :data="dataModal"
+    @showModal="
+      (value) => {
+        this.open = value;
+      }
+    "
+  />
   <div class="mt-8 flex flex-col m-6">
     <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
       <div class="inline-block w-full py-2 align-middle md:px-6 lg:px-8">
@@ -15,7 +21,6 @@
             md:rounded-lg
           "
         >
-          <!--<h2>Nombre de livre : {{ spellData.length }}</h2>-->
           <table class="w-full divide-y divide-gray-300">
             <thead class="bg-gray-50">
               <tr>
@@ -103,7 +108,6 @@
                 <!--On appel l'élément spell de spellView et on lui donne la valeur de spellFor pour qu'il travaille avec -->
                 <spellView :spell="spellFor" />
               </tr>
-              <!-- More transactions... -->
             </tbody>
           </table>
         </div>
@@ -115,30 +119,26 @@
 <script>
 import spellView from "./formSpellView.vue";
 import ModalDetail from "./formModalDetail.vue";
-//import spellDetail from "./formSpellDetail.vue";
 
 export default {
   name: "spellTable",
   props: ["spellAfficher"],
   components: {
     spellView,
-    ModalDetail
+    ModalDetail,
   },
-  data () {
+  data() {
     return {
       open: false,
-      dataModal: []
-    }
+      dataModal: [],
+    };
   },
   methods: {
-    afficherDetail(data) {
+    afficherDetail(spell) {
+      //Affichage de la pop-up de détail d'un sort
       this.open = true;
-      this.dataModal = data;
-      console.log(data);
+      this.dataModal = spell;
     },
-    setDataModal() {
-
-    }
   },
 };
 </script>

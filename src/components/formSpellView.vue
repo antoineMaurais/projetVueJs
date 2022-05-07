@@ -10,6 +10,7 @@
   </td>
   <td class="whitespace-nowrap px-2 py-2 text-xs text-gray-900">
     {{ spell[3].join(", ") }}
+    <!--Affiche  sans les crochets et les guillemets -->
   </td>
   <td class="whitespace-nowrap px-2 py-2 text-xs text-gray-900">
     {{ spell[4].join(", ") }}

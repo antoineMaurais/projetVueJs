@@ -1,4 +1,5 @@
 <template>
+  <!-- Affichage de la pop up uniquement si open = true (si l'utilisateur a cliqué sur un sort)-->
   <div
     v-show="open"
     class="relative z-10"

@@ -6,7 +6,8 @@
           (search) => {
             this.recherche = search;
             spellSearch();
-          }"
+          }
+        "
       />
       <checkBoxSelect @eventOptionSelected="optionSelected($event)" />
       <h3>Nombre total de sorts trouvés: {{ spellData.length }}</h3>
@@ -19,7 +20,6 @@
 <script>
 import formTable from "./formTable.vue";
 import searchBar from "./formSearchBar";
-//import checkBoxSearchName from "./formCheckBoxSearchName.vue";
 import checkBoxSelect from "./formCheckBoxSelect.vue";
 
 export default {
@@ -43,18 +43,19 @@ export default {
   },
   computed: {},
   methods: {
-    searchBoxSelecte() {
-      console.log(this.searchBox);
-    },
     initData() {
+      // initialise les données à afficher
       this.spellData = this.data;
     },
     filterSearchBar() {
-      this.spellData = this.spellData.filter((spell) =>
-        spell[1].toLowerCase().includes(this.recherche.toLowerCase())
+      // filtre les données à afficher par rapport à la bar de recherche (nom du sort)
+      this.spellData = this.spellData.filter(
+        (spell) => spell[1].toLowerCase().includes(this.recherche.toLowerCase())
+        // les chaines caractères en lower case permettent leur comparaison
       );
     },
     spellSearch() {
+      // Recherche des données à afficher
       this.initData();
       this.verifyIfOptionSelected();
       this.filterSearchBar();
@@ -74,44 +75,49 @@ export default {
           this.classesListe = listeName;
           break;
         case "niveau":
-          this.niveauListe = listeName; 
+          this.niveauListe = listeName;
           break;
       }
 
       this.verifyIfOptionSelected();
     },
+    // Filtrage des données affichées par rapport aux filtres sélectionnés
     verifyIfOptionSelected() {
+      // Vérification des filtres sélectionnés
       if (this.ecoleListe.option !== "") {
+        // Filtrage des données
         this.spellData = this.spellData.filter(
-            (spell) => spell[2] === this.ecoleListe.option
-          );
+          (spell) => spell[2] === this.ecoleListe.option
+        );
       }
       if (this.brancheListe.option !== "") {
         this.spellData = this.spellData.filter((spell) =>
-            spell[3].includes(this.brancheListe.option)
-          );
+          spell[3].includes(this.brancheListe.option)
+        );
       }
       if (this.classesListe.option !== "") {
         this.spellData = this.spellData.filter((spell) =>
-            this.getClasses(spell[4]).includes(this.classesListe.option)
-          );
+          this.getClasses(spell[4]).includes(this.classesListe.option)
+        );
       }
       if (this.niveauListe.option !== "") {
         this.spellData = this.spellData.filter((spell) =>
-            this.getlevels(spell[4]).includes(parseInt(this.niveauListe.option))
-          );
+          this.getlevels(spell[4]).includes(parseInt(this.niveauListe.option))
+        );
       }
     },
-    getClasses(tab) {
+    getClasses(spell) {
+      // Recupère les classes du sort passé en paramètre
       let classe = [];
-      tab.forEach((elem) => {
+      spell.forEach((elem) => {
         classe.push(elem[0]);
       });
       return classe;
     },
-    getlevels(tab) {
+    getlevels(spell) {
+      // Recupère les niveaux du sort passé en paramètre
       let levels = [];
-      tab.forEach((elem) => {
+      spell.forEach((elem) => {
         levels.push(elem[1]);
       });
       return levels;
