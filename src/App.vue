@@ -187,6 +187,7 @@ export default {
       ongletCourant: "accueil",
       activeClass: "bg-indigo-500",
       nonActiveClass: "bg-transparent",
+      config: this.initConfig()
     };
   },
   methods: {
@@ -202,6 +203,14 @@ export default {
     },
     ongletConfiguration() {
       this.ongletCourant = "configuration";
+    },
+    initConfig() {
+      let config = JSON.parse(localStorage.getItem("config"));
+      if (!config) {
+        config = {ecole: true, branche: true, classes: true, niveau: true};
+        localStorage.setItem("config", JSON.stringify(config));
+      }
+      return config;
     },
   },
 };

@@ -5,6 +5,7 @@
         label="Ecole :"
         :options="optionsEcole"
         name="ecole"
+        :affiche="config.ecole"
         @eventSelectOption="optionSelectFunction"
       />
     </td>
@@ -15,6 +16,7 @@
         label="Branche :"
         :options="optionsBranche"
         name="branche"
+        :affiche="config.branche"
         @eventSelectOption="optionSelectFunction"
       />
     </td>
@@ -25,6 +27,7 @@
         label="Classes :"
         :options="optionsClasse"
         name="classes"
+        :affiche="config.classes"
         @eventSelectOption="optionSelectFunction"
       />
     </td>
@@ -35,6 +38,7 @@
         label="Niveau :"
         :options="optionsNiveau"
         name="niveau"
+        :affiche="config.niveau"
         @eventSelectOption="optionSelectFunction"
       />
     </td>
@@ -57,6 +61,7 @@ export default {
       optionsBranche: this.getBranches(),
       optionsClasse: this.getClasses(),
       optionsNiveau: this.getLevels(),
+      config: this.initConfig()
     };
   },
   methods: {
@@ -110,16 +115,13 @@ export default {
     optionSelectFunction(name, option) {
       this.$emit("eventOptionSelected", { name, option });
     },
-    initSchools() {
-      console.log("InitSchools");
-      let schools = JSON.parse(localStorage.getItem("ecoles"));
-      console.log(schools);
-      if (!schools) {
-        console.log("schools22");
-        schools = this.getSchools();
-        localStorage.setItem("ecoles", JSON.stringify(schools));
+    initConfig() {
+      let config = JSON.parse(localStorage.getItem("config"));
+      if (!config) {
+        config = {ecole: true, branche: true, classes: true, niveau: true};
+        localStorage.setItem("config", JSON.stringify(config));
       }
-      return schools;
+      return config;
     },
   },
 };
